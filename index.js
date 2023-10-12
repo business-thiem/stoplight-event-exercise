@@ -8,18 +8,8 @@
     pageInit()
   });
 
+
   function pageInit(){
-
-  // let stopBtn = document.querySelector('#stopButton')
-  // let stopLt = document.querySelector('#stopLight')
-  
-  // let slowBtn = document.querySelector('#slowButton')
-  // let slowLt = document.querySelector('#slowLight')
-
-  // let goBtn = document.querySelector('#goButton')
-  // let goLt = document.querySelector('#goLight')
-
-
     const controlBtns = document.querySelectorAll('.button')
     const lights = document.querySelectorAll('.bulb')
 
@@ -27,6 +17,18 @@
     controlBtns.forEach(button => {
       button.addEventListener('click', (e) => {
         handleButtonClick(e)
+      })
+    });
+
+    controlBtns.forEach(button => {
+      button.addEventListener('mouseenter', (e) => {
+        console.log(`Entered ${e.target.id} button`)
+      })
+    });
+
+    controlBtns.forEach(button => {
+      button.addEventListener('mouseleave', (e) => {
+        console.log(`Left ${e.target.id} button`)
       })
     });
   
@@ -69,8 +71,8 @@
 
       lightDiv.classList.add(classStr)
     }
-  }
 
 
+  }// end init function
 
-})();
+})(); //end use strict
