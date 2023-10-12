@@ -3,6 +3,13 @@
 
   // YOUR CODE HERE
 
+  //page load complete, then add event listeners
+  document.addEventListener("DOMContentLoaded", function() {
+    pageInit()
+  });
+
+  function pageInit(){
+
   // let stopBtn = document.querySelector('#stopButton')
   // let stopLt = document.querySelector('#stopLight')
   
@@ -13,21 +20,57 @@
   // let goLt = document.querySelector('#goLight')
 
 
+    const controlBtns = document.querySelectorAll('.button')
+    const lights = document.querySelectorAll('.bulb')
 
 
-  const controlBtns = document.querySelectorAll('#controls')[0]
-
-  console.log(controlBtns)
+    controlBtns.forEach(button => {
+      button.addEventListener('click', (e) => {
+        handleButtonClick(e)
+      })
+    });
   
+  
+    function handleButtonClick(e){
+      let btnid = e.target.id
+  
+      switch(btnid){
+        case 'stopButton': 
+          changeColor('stopLight')
+          break;
+  
+        case 'slowButton':
+          changeColor('slowLight')
+          break;
+  
+        case 'goButton':
+          changeColor('goLight')
+          break;
+      }
+    }
 
-  controlBtns.forEach(button => {
-    button.addEventListener('click', handleButtonClick(e))
-  });
+    function changeColor(bulbId){
+      const lightDiv = document.querySelector(`#${bulbId}`)
+      let classStr = ''
 
+      switch(lightDiv.id){
+        case 'stopLight':
+          classStr = 'stop'
+          break;
 
+        case 'slowLight':
+          classStr = 'slow'
+          break;
 
-  function handleButtonClick(e){
-    btnid = e.target.id
+        case 'goLight':
+          classStr = 'go'
+          break;
+      }
+
+      lightDiv.classList.add(classStr)
+    }
   }
+
+
 
 })();
