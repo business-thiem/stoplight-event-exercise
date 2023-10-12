@@ -9,11 +9,13 @@
   });
 
 
+  //initializes the event listeners
   function pageInit(){
     const controlBtns = document.querySelectorAll('.button')
     const lights = document.querySelectorAll('.bulb')
 
 
+    //event listeners
     controlBtns.forEach(button => {
       button.addEventListener('click', (e) => {
         handleButtonClick(e)
@@ -33,6 +35,7 @@
     });
   
   
+    //calls changeColor based on button id clicked
     function handleButtonClick(e){
       let btnid = e.target.id
   
@@ -51,7 +54,9 @@
       }
     }
 
+    //toggles color class based on button clicked, returns nothing
     function changeColor(bulbId){
+      const lightClassNameArr = ['stop', 'slow', 'go'] 
       const lightDiv = document.querySelector(`#${bulbId}`)
       let classStr = ''
 
@@ -69,7 +74,14 @@
           break;
       }
 
-      lightDiv.classList.add(classStr)
+      lightDiv.classList.toggle(classStr)
+
+      //if at least one classNameArr exists inside the element 
+      if(lightClassNameArr.some(className => lightDiv.classList.contains(className))){
+        console.log(`${lightDiv.id} bulb on`)
+      } else{
+        console.log(`${lightDiv.id} bulb off`)
+      }
     }
 
 
